@@ -1,0 +1,81 @@
+body {
+  user-select: none;
+  user-drag: none;
+}
+
+#actors {
+  display: none;
+}
+
+#game {
+  background: url(../img/background.jpg);
+  width: 1366px;
+  height: 768px;
+  overflow: hidden;
+  cursor: none;
+}
+
+#crosshair {
+  display: none;
+  position: relative;
+  z-index: 2;
+  background: url(../img/crosshair.png);
+  width: 60px;
+  height: 60px;
+}
+
+.sprite {
+  position: relative;
+  z-index: 3;
+  left: 0px;
+  top: 0px;
+  display: block;
+  background: url(../img/sprites.png) no-repeat;
+}
+
+.duck.right {
+  background-position: -836px -208px;
+  width: 104px;
+  height: 74px;
+}
+
+.duck.right.flap {
+  background-position: -695px -208px;
+  width: 104px;
+  height: 74px;
+}
+
+.dead {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+
+#game-over {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+#game-over-message {
+  text-transform: uppercase;
+  font-family: courier, "Courier New", monospace;
+  background: #000;
+  color: #FFF;
+  width: 600px;
+  font-size: 4em;
+  padding: 1.4em;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+}
+
+#game-over-message p {
+  padding-top: 2em;
+  font-size: 0.4em;
+}
+
