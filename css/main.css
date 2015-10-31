@@ -16,7 +16,7 @@ body {
 }
 
 #crosshair {
-  display: none;
+  /*display: none;*/
   position: relative;
   z-index: 2;
   background: url(../img/crosshair.png);
@@ -37,6 +37,7 @@ body {
   background-position: -836px -208px;
   width: 104px;
   height: 74px;
+  left: -40px;
 }
 
 .duck.right.flap {

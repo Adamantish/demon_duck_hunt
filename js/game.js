@@ -41,7 +41,7 @@ Game.prototype.nextRound = function() {
       // Keep going!
       _this.nextRound();
     }
-  }, this.speed + 2000);
+  }, this.speed + (5000 * Math.random()));
 
 }
 

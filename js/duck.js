@@ -37,11 +37,21 @@ Duck.prototype.flap = function() {
 Duck.prototype.draw = function() {
   // Make the duck appear somewhere random along the page and just off the screen
 
+  $duck = $(this.el).addClass("sprite").addClass("duck")
+  $($duck).attr("style", "top: " + randomHeight() + "px")
   // Append the element to the DOM, use the #game element
-
+  $('#game').append($duck)
   // Start Flapping...
-
+  this.flap()
   // ... and Fly!
+  $(this.el).animate({left:"1600", top:randomHeight()}
+    , this.game.speed
+    , "linear"
+    , function() {
+      this.remove()
+                 // this.remove(); 
+               })
+  // this.remove()
 }
 
 // TODO: I've been shot!
@@ -49,7 +59,7 @@ Duck.prototype.die = function() {
   // Add a .dead CSS class
 
   // Stop flapping - clear the flapTimer
-
+  this.flapTimer = 0
   // Stop flying animations
 
   // Notify the Game object and add 100 to the score
