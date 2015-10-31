@@ -7,7 +7,7 @@ function Duck(game) {
 
   // Add a callback for when the Duck is clicked (shot!)
   var _this = this;
-  $(this.el).click(function() {
+  $(this.el).on("click", function() {
     _this.die();
   });
 
@@ -44,11 +44,12 @@ Duck.prototype.draw = function() {
   // Start Flapping...
   this.flap()
   // ... and Fly!
+  var _this = this
   $(this.el).animate({left:"1600", top:randomHeight()}
     , this.game.speed
     , "linear"
     , function() {
-      this.remove()
+      _this.remove()
                  // this.remove(); 
                })
   // this.remove()
@@ -57,14 +58,16 @@ Duck.prototype.draw = function() {
 // TODO: I've been shot!
 Duck.prototype.die = function() {
   // Add a .dead CSS class
-
+    $(this.el).addClass("dead")
   // Stop flapping - clear the flapTimer
-  this.flapTimer = 0
+   clearTimeout(this.flapTimer)
   // Stop flying animations
-
+  $(this.el).stop()
   // Notify the Game object and add 100 to the score
-
+  game.addScore(100)
   // Fall to the bottom of the screen
+  $(this.el).animate({top:"1200"}, 1600, "swing", function() {this.remove()})
+
 }
 
 // I made it to the other side!
