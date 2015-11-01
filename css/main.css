@@ -19,6 +19,11 @@ input {
 p {
   margin: 1em;
 }
+
+form {
+    margin: 1em;
+}
+
 #actors {
   display: none;
 }
@@ -97,12 +102,10 @@ p {
   font-size: 0.4em;
 }
 
-#play-button {
-
-  background-color: grey;
-  border: 
-}
-
-form {
-    margin: 1em;
+#score {
+  position: absolute;
+  top: 687px;
+  left: 1063px;
+  z-index: 4;
+  color: white;
 }

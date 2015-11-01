@@ -18,7 +18,7 @@ function Game(difficulty) {
 
 // Maps difficulty to speed at which a Duck traverses the screen in milliseconds.
 Game.prototype.difficulty = {
-  soft: 8000,
+  easy: 8000,
   medium: 4000,
   hard: 2500
 }
@@ -54,5 +54,5 @@ Game.prototype.gameOver = function() {
 // Add the given number of points to the score, and print the total to the log.
 Game.prototype.addScore = function(points) {
   this.score += points;
-  console.log("Score: " + this.score);
+  $('#score')[0].innerText = this.score
 }
