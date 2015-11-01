@@ -64,9 +64,10 @@ Duck.prototype.die = function() {
   // Stop flying animations
   $(this.el).stop()
   // Notify the Game object and add 100 to the score
-  game.addScore(100)
-  // Fall to the bottom of the screen
-  $(this.el).animate({top:"1200"}, 1600, "swing", function() {this.remove()})
+  this.game.addScore(100)
+  // Fall to the bottom of the screen 
+  // Note: 
+  $(this.el).animate({top:"+=800"}, 1600, "easeInBackCustomised", function() {this.remove()})
 
 }
 
