@@ -1,7 +1,17 @@
 body {
   user-select: none;
+  text-align: center;
   user-drag: none;
+  font-size: 25px;  
 }
+
+h1 {
+  font-size: 5em;
+}
+h3 {
+  font-size: 2em;
+}
+
 
 #actors {
   display: none;

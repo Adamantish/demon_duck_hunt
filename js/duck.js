@@ -55,7 +55,7 @@ Duck.prototype.draw = function() {
   // this.remove()
 }
 
-// TODO: I've been shot!
+//  I've been shot!
 Duck.prototype.die = function() {
   // Add a .dead CSS class
     $(this.el).addClass("dead")
@@ -67,14 +67,18 @@ Duck.prototype.die = function() {
   this.game.addScore(100)
   // Fall to the bottom of the screen 
   // Note: 
-  $(this.el).animate({top:"+=800"}, 1600, "easeInBackCustomised", function() {this.remove()})
+  var duck_this = this 
+  $(this.el).animate({top:"+=800"}, 1600, "easeInBackCustomised", function() {
+    duck_this.complete()
+    duck_this.remove()
+  })
 
 }
 
 // I made it to the other side!
 Duck.prototype.complete = function() {
   this.game.lives -= 1;
-  return this;
+  // return this;
 }
 
 // Code to remove the Duck from the DOM and from memory.
