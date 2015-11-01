@@ -18,7 +18,7 @@ function Game(difficulty) {
 
 // Maps difficulty to speed at which a Duck traverses the screen in milliseconds.
 Game.prototype.difficulty = {
-  easy: 8000,
+  soft: 8000,
   medium: 4000,
   hard: 2500
 }

@@ -38,14 +38,14 @@ Duck.prototype.draw = function() {
   // Make the duck appear somewhere random along the page and just off the screen
 
   $duck = $(this.el).addClass("sprite").addClass("duck")
-  $($duck).attr("style", "top: " + randomHeight() + "px")
+  $($duck).attr("style", "top: " + (randomHeight() - 100) + "px")
   // Append the element to the DOM, use the #game element
   $('#game').append($duck)
   // Start Flapping...
   this.flap()
   // ... and Fly!
   var _this = this
-  $(this.el).animate({left:"1600", top:randomHeight()}
+  $(this.el).animate({left:"1600", top:randomHeight() - 100}
     , this.game.speed
     , "linear"
     , function() {

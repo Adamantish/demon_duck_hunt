@@ -12,7 +12,13 @@ h3 {
   font-size: 2em;
 }
 
+input {
+  /*display: block;*/
+}
 
+p {
+  margin: 1em;
+}
 #actors {
   display: none;
 }
@@ -91,3 +97,12 @@ h3 {
   font-size: 0.4em;
 }
 
+#play-button {
+
+  background-color: grey;
+  border: 
+}
+
+form {
+    margin: 1em;
+}
