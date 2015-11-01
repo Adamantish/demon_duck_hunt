@@ -15,19 +15,16 @@ function renderStartScreen() {
    var $playButton = $('html')
    $playButton.on('click', '#play-button', function() { 
     
-    var difficulty = $('input[name=difficulty]:checked', '#difficulties').val()
+    globDifficulty = $('input[name=difficulty]:checked', '#difficulties').val()
     globModal.remove()
 
-    beginNewGame(difficulty)
+    game = new Game()
 
    })
 
   return html
 }
 
-function beginNewGame(difficulty) {
-  game = new Game(difficulty)
-};
 
 $(document).ready(function() {
   console.log("Welcome to Duck Hunt!");
@@ -38,7 +35,7 @@ $(document).ready(function() {
   $('#play-again').click(function(e) {
     $("#game-over").toggle();
     delete game;
-    beginNewGame()
+    game = new Game()
   });
 
   $('#game').on("mousemove", function(){ 

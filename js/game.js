@@ -1,17 +1,19 @@
 // Constructor function for a Game
 
-function Game(difficulty) {
-  this.lives = 10;
+function Game() {
+  this.lives = 3;
   this.score = 0;
 
+  var _this = this
+
+  $('#game').on('click', _this.decrementShots)
   // Set the difficulty- easy by default
-  if(typeof(difficulty) === "undefined") {
+  if(typeof(globDifficulty) === "undefined") {
     this.speed = this.difficulty.easy;
   }
   else {
-    this.speed = this.difficulty[difficulty];
+    this.speed = this.difficulty[globDifficulty];
   }
-
   // Kick-off the first wave of Ducks
   this.nextRound();
 }
@@ -23,12 +25,27 @@ Game.prototype.difficulty = {
   hard: 2500
 }
 
+Game.prototype.resetShots = function() {
+  this.shots = 3
+}
+
+Game.prototype.decrementShots = function() {
+
+  game.shots -= 1
+    console.log("shots left: " + game.shots)
+
+}
 // Fire off two new Ducks. After waiting a little while, continue to the next
 // round if we've got more lives, or show the Game Over screen.
 Game.prototype.nextRound = function() {
   var duck = new Duck(this);
   var duck = new Duck(this);
   var _this = this;
+
+  this.resetShots()
+  // myTODO: Restructure to call this on the removal of last duck rather than using setTimeout to call self.
+  // This will mean we don't have to wait a long time after killing both ducks early
+   // and don't have to wait for game over
 
   // Do this again in a little while...
   var roundTimer = setTimeout(function() {

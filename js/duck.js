@@ -8,7 +8,7 @@ function Duck(game) {
   // Add a callback for when the Duck is clicked (shot!)
   var _this = this;
   $(this.el).on("click", function() {
-    _this.die();
+    if (game.shots > 0) {_this.die()};
   });
 
   // Display the Duck in the #game
@@ -17,7 +17,7 @@ function Duck(game) {
 
 // A random height generator for use when placing a Duck.
 function randomHeight() {
-  return 600 * Math.random();
+  return 500 * Math.random();
 }
 
 // Some animation using a Timeout to make the Duck flap.
@@ -38,17 +38,18 @@ Duck.prototype.draw = function() {
   // Make the duck appear somewhere random along the page and just off the screen
 
   $duck = $(this.el).addClass("sprite").addClass("duck")
-  $($duck).attr("style", "top: " + (randomHeight() - 100) + "px")
+  $($duck).attr("style", "top: " + (randomHeight() ) + "px")
   // Append the element to the DOM, use the #game element
   $('#game').append($duck)
   // Start Flapping...
   this.flap()
   // ... and Fly!
   var _this = this
-  $(this.el).animate({left:"1600", top:randomHeight() - 100}
+  $(this.el).animate({left:"1600", top:randomHeight()}
     , this.game.speed
     , "linear"
     , function() {
+      _this.complete()
       _this.remove()
                  // this.remove(); 
                })
@@ -57,6 +58,8 @@ Duck.prototype.draw = function() {
 
 //  I've been shot!
 Duck.prototype.die = function() {
+
+
   // Add a .dead CSS class
     $(this.el).addClass("dead")
   // Stop flapping - clear the flapTimer
@@ -69,7 +72,6 @@ Duck.prototype.die = function() {
   // Note: 
   var duck_this = this 
   $(this.el).animate({top:"+=800"}, 1600, "easeInBackCustomised", function() {
-    duck_this.complete()
     duck_this.remove()
   })
 

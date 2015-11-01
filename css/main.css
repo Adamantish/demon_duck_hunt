@@ -2,7 +2,8 @@ body {
   user-select: none;
   text-align: center;
   user-drag: none;
-  font-size: 25px;  
+  font-size: 25px; 
+  font-family: courier, "Courier New", monospace; 
 }
 
 h1 {
@@ -74,6 +75,7 @@ form {
 }
 
 #game-over {
+  font-size: 0.75em;
   display: none;
   width: 100%;
   height: 100%;
