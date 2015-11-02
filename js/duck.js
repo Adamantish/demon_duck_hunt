@@ -1,14 +1,24 @@
 // Constructor function for a Duck
 
-function Duck(game) {
+function Duck(game, type) {
   this.game = game;
   this.el = $("#duck-template").clone();
   this.el.removeAttr("id");
+  
+  this.type = type
+
+  if(this.type === 'ghost') {
+    this.worthPoints = 300;
+    this.demonImmunity = true;
+    }
+  else {
+    this.worthPoints = 100;
+  };
 
   // Add a callback for when the Duck is clicked (shot!)
   var _this = this;
   $(this.el).on("click", function() {
-    if (game.shots > 0) {_this.die()};
+    if( game.shots > 0 && !_this.demonImmunity ) {_this.die()};
   });
 
   // Display the Duck in the #game
@@ -37,44 +47,74 @@ Duck.prototype.flap = function() {
 Duck.prototype.draw = function() {
   // Make the duck appear somewhere random along the page and just off the screen
 
-  $duck = $(this.el).addClass("sprite").addClass("duck")
-  $($duck).attr("style", "top: " + (randomHeight() ) + "px")
-  // Append the element to the DOM, use the #game element
+  var $duck = $(this.el).addClass("sprite").addClass("duck")
+  // $duck = $('<div>').addClass('duck-holder')
+  $duck.attr("style", "top: " + (randomHeight() ) + "px")
+  // $duck.append($innerDuck)
+
   $('#game').append($duck)
-  // Start Flapping...
   this.flap()
-  // ... and Fly!
   var _this = this
   $(this.el).animate({left:"1600", top:randomHeight()}
     , this.game.speed
     , "linear"
     , function() {
-      _this.complete()
+      if(_this.type !== 'ghost') {_this.complete()};
       _this.remove()
-                 // this.remove(); 
                })
+
+  if(this.type === 'ghost') {
+    $(this.el).attr("style", "opacity: 0.6")
+    $(this.el).animate({opacity:0},
+    {
+      duration: this.game.speed * 0.3,
+      queue: false,
+      easing: "easeInOutBounce",
+      complete: function() {
+          setTimeout( function() {
+            _this.demonImmunity = false
+          } ,_this.game.speed * 0.15)
+        }
+      }
+      )
+  }
   // this.remove()
 }
 
 //  I've been shot!
 Duck.prototype.die = function() {
 
+  var _this = this
 
-  // Add a .dead CSS class
+  if(this.type === 'ghost') {
+
+    $(this.el).addClass("undead")
+     clearTimeout(this.flapTimer)
+    $(this.el).stop()
+    this.game.addScore(this.worthPoints)
+    $(this.el).animate({top:"-=800"}, 1600, "easeInSine", function() {
+      _this.remove()
+    })
+    $(this.el).animate({opacity:0.6}, {duration: 200, queue: false} )
+  }
+  else {
+
     $(this.el).addClass("dead")
-  // Stop flapping - clear the flapTimer
-   clearTimeout(this.flapTimer)
-  // Stop flying animations
-  $(this.el).stop()
-  // Notify the Game object and add 100 to the score
-  this.game.addScore(100)
-  // Fall to the bottom of the screen 
-  // Note: 
-  var duck_this = this 
-  $(this.el).animate({top:"+=800"}, 1600, "easeInBackCustomised", function() {
-    duck_this.remove()
-  })
+     // Stop flapping - clear the flapTimer
+     clearTimeout(this.flapTimer)
+    // Stop flying animations
+    $(this.el).stop()
+    // Notify the Game object and add 100 to the score
+    this.game.addScore(this.worthPoints)
+    $(this.el).animate({top:"+=800"}, 1600, "easeInBackCustomised", function() {
+      _this.remove()
+    })
 
+  }
+
+  function allDeadDucksDo() {
+    
+  }
 }
 
 // I made it to the other side!

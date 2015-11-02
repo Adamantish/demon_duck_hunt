@@ -1,10 +1,13 @@
 // Constructor function for a Game
 
 function Game() {
-  this.lives = 3;
+  this.lives = 10;
   this.score = 0;
+  $('#score')[0].innerText = 0
 
   var _this = this
+  // to prevent highlighting on double click
+  $('#game').mousedown(function(){ return false; })
 
   $('#game').on('click', _this.decrementShots)
   // Set the difficulty- easy by default
@@ -39,7 +42,8 @@ Game.prototype.decrementShots = function() {
 // round if we've got more lives, or show the Game Over screen.
 Game.prototype.nextRound = function() {
   var duck = new Duck(this);
-  var duck = new Duck(this);
+  var duck2 = new Duck(this);
+  var ghostDuck = new Duck(this, 'ghost')
   var _this = this;
 
   this.resetShots()
