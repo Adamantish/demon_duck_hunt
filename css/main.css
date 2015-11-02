@@ -100,6 +100,7 @@ form {
   background: url(../img/steps_sprite.png);
   width: 100px;
   height: 100px;
+  cursor: pointer;
 }
 
 .sound-icon.unmute {
@@ -156,7 +157,7 @@ form {
   left: 1063px;
   z-index: 4;
   color: white;
-  filter: blur(20px);
+  
 }
 
 .creepy {

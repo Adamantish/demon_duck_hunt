@@ -4,8 +4,8 @@ function Game() {
   this.lives = 10;
   this.score = 0;
   this.demonKills = 0;
-  this.shotSound = new Audio()
-  this.shotSound.src = 'audio/shot.mp3'
+  // this.shotSound = new Audio()
+  // this.shotSound.src = 'audio/shot.mp3'
 
   $('#score')[0].innerText = 0
 
@@ -65,22 +65,23 @@ Game.prototype.nextRound = function() {
   }
   else {
     // roundTimer = setTimeout(function() {
-      var duck = new Duck(this);
-      var duck2 = new Duck(this);
-      var demonDuck = new Duck(this, 'demon');
+      duck = new Duck(_this);
+      duck2 = new Duck(_this);
+      demonDuck = new Duck(_this, 'demon');
       
       _this.resetShots();
 
-      };
+    //   }
     //   , (5000 * Math.random())
     // )
 
-  // };
+  };
 };
 
 Game.prototype.nextRoundIfReady = function() {
   var _this = this
   if ($('.duck').length == 1) {
+
     _this.nextRound()
   };
 };
@@ -95,5 +96,5 @@ Game.prototype.gameOver = function() {
 // Add the given number of points to the score, and print the total to the log.
 Game.prototype.addScore = function(points) {
   this.score += points;
-  $('#score')[0].innerText = this.score
+  $('#score').html = this.score
 }

@@ -59,17 +59,18 @@ Duck.prototype.draw = function() {
   this.flap()
   var _this = this
   $(this.el).animate({left:"1600", top:randomHeight()}
-    , this.game.speed
-    , "linear"
-    , function() {
+    , {duration: _this.game.speed
+    , easing: "linear"
+    , queue: false
+    , complete: function() {
       if(_this.type !== 'demon') {_this.complete()};
       _this.remove()
-  })
+  }})
 
-  if(this.type === 'demon') {
-    $(this.el).addClass('demon')
-    $(this.el).attr("style", "opacity: 0.6")
-    $(this.el).animate({opacity:0},
+  if(_this.type === 'demon') {
+    $(_this.el).addClass('demon')
+    $(_this.el).attr("style", "opacity: 0.6")
+    $(_this.el).animate({opacity:0},
     {
       duration: this.game.speed * 0.3,
       queue: false,
@@ -95,8 +96,6 @@ Duck.prototype.die = function() {
   if(this.type === 'demon') {
 
     $(this.el).addClass("undead")
-    // $(this.el).removeClass('demon')
-    // clearTimeout(this.flapTimer)
     $(this.el).stop()
     this.game.addScore(this.worthPoints)
     this.game.demonKills += 1
