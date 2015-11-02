@@ -97,13 +97,13 @@ form {
   left: 786px;
   top: 30px;
   border-radius: 100%;
-  background: url(../img/no_steps.png);
+  background: url(../img/steps_sprite.png);
   width: 100px;
   height: 100px;
 }
 
 .sound-icon.unmute {
-  background: url(../img/yes_steps.png);
+  background-position-x: -100px; 
 }
 /*.duck-holder {
   width: 300%;

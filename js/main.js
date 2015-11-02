@@ -1,3 +1,6 @@
+// use strict
+
+var globalTragedy
 
 function renderStartScreen() {
   var html = ""
@@ -18,18 +21,24 @@ function renderStartScreen() {
 
   $('html').on('click', '.sound-icon', function() {
     $('.sound-icon').toggleClass('unmute')
-    var tragicMusic = new Audio('audio/tragedy128.mp3')
-    tragicMusic.loop = true
-    tragicMusic.play()
+    if(globalTragedy === undefined) {
+      globalTragedy = new Audio('audio/tragedy128.mp3')
+      globalTragedy.loop = true
+    }
+    if(globalTragedy.paused){
+      globalTragedy.play()
+    }
+    else {
+      globalTragedy.pause()
+    };
   })
 
   var $playButton = $('html')
   $playButton.on('click', '#play-button', function() { 
-
-  globDifficulty = $('input[name=difficulty]:checked', '#difficulties').val()
-  globModal.remove()
-
-  game = new Game()
+   
+    globDifficulty = $('input[name=difficulty]:checked', '#difficulties').val()
+    globModal.remove()
+    game = new Game()
 
   })
 
