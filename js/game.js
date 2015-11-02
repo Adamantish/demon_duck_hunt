@@ -4,6 +4,8 @@ function Game() {
   this.lives = 10;
   this.score = 0;
   this.demonKills = 0;
+  this.shotSound = new Audio()
+  this.shotSound.src = 'audio/shot.mp3'
 
   $('#score')[0].innerText = 0
 
@@ -36,9 +38,13 @@ Game.prototype.resetShots = function() {
 
 Game.prototype.decrementShots = function() {
 
-  game.shots -= 1
-    console.log("shots left: " + game.shots)
+  if( game.shots > 0 ){
+  game.shotSound = new Audio()
+  game.shotSound.src = 'audio/shot.mp3'
+  game.shotSound.play()
 
+  game.shots -= 1
+  };
 }
 // Fire off two new Ducks. After waiting a little while, continue to the next
 // round if we've got more lives, or show the Game Over screen.
@@ -60,7 +66,7 @@ Game.prototype.nextRound = function() {
     // roundTimer = setTimeout(function() {
       var duck = new Duck(this);
       var duck2 = new Duck(this);
-      var ghostDuck = new Duck(this, 'ghost');
+      var demonDuck = new Duck(this, 'demon');
       
       _this.resetShots();
 

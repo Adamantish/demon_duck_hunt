@@ -7,7 +7,7 @@ function Duck(game, type) {
   
   this.type = type
 
-  if(this.type === 'ghost') {
+  if(this.type === 'demon') {
     this.worthPoints = 300;
     this.demonImmunity = true;
     }
@@ -59,11 +59,11 @@ Duck.prototype.draw = function() {
     , this.game.speed
     , "linear"
     , function() {
-      if(_this.type !== 'ghost') {_this.complete()};
+      if(_this.type !== 'demon') {_this.complete()};
       _this.remove()
   })
 
-  if(this.type === 'ghost') {
+  if(this.type === 'demon') {
     $(this.el).addClass('demon')
     $(this.el).attr("style", "opacity: 0.6")
     $(this.el).animate({opacity:0},
@@ -87,7 +87,7 @@ Duck.prototype.die = function() {
 
   var _this = this
 
-  if(this.type === 'ghost') {
+  if(this.type === 'demon') {
 
     $(this.el).addClass("undead")
     // $(this.el).removeClass('demon')
