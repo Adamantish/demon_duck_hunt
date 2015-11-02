@@ -64,18 +64,18 @@ Game.prototype.nextRound = function() {
     _this.gameOver();
   }
   else {
-    // roundTimer = setTimeout(function() {
-      var duck = new Duck(this);
-      var duck2 = new Duck(this);
-      var demonDuck = new Duck(this, 'demon');
+    roundTimer = setTimeout(function() {
+      var duck = new Duck(_this);
+      var duck2 = new Duck(_this);
+      var demonDuck = new Duck(_this, 'demon');
       
       _this.resetShots();
 
-      };
-    //   , (5000 * Math.random())
-    // )
+      }
+    , (5000 * Math.random())
+    )
 
-  // };
+  };
 };
 
 Game.prototype.nextRoundIfReady = function() {
