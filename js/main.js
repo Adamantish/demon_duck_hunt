@@ -2,7 +2,7 @@
 function renderStartScreen() {
   var html = "<h1 class='creepy'>Demon</h1>"
   html += "<h1>Duck Hunt!</h1>"
-  html += "<p>Your job is getting them live ducks dead. <br> Your pleasure is getting the dead demon one deader. Kill it after it turns invisible for triple points.</p>"
+  html += "<p>Your job is to get them live ducks dead. <br> Your pleasure is to get the dead demon one deader. Double-dead it after it turns invisible for triple points.</p>"
   html += "<p>How tough do you like your duck?</p>"
   html += "<form id='difficulties' >"
    html += "          <input type='radio' name='difficulty' value='easy'>Soft</input>"

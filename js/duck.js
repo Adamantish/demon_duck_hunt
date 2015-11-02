@@ -18,7 +18,7 @@ function Duck(game, type) {
   // Add a callback for when the Duck is clicked (shot!)
   var _this = this;
   $(this.el).on("click", function() {
-    if( game.shots > 0 && !_this.demonImmunity ) {_this.die()};
+    if( game.shots > 0 & !_this.demonImmunity ) {_this.die()};
   });
 
   // Display the Duck in the #game
@@ -61,7 +61,7 @@ Duck.prototype.draw = function() {
     , function() {
       if(_this.type !== 'ghost') {_this.complete()};
       _this.remove()
-               })
+  })
 
   if(this.type === 'ghost') {
     $(this.el).attr("style", "opacity: 0.6")
@@ -71,12 +71,12 @@ Duck.prototype.draw = function() {
       queue: false,
       easing: "easeInOutBounce",
       complete: function() {
-          setTimeout( function() {
+        setTimeout( function() {
             _this.demonImmunity = false
           } ,_this.game.speed * 0.15)
         }
       }
-      )
+    )
   }
   // this.remove()
 }
@@ -89,13 +89,14 @@ Duck.prototype.die = function() {
   if(this.type === 'ghost') {
 
     $(this.el).addClass("undead")
-     clearTimeout(this.flapTimer)
+    clearTimeout(this.flapTimer)
     $(this.el).stop()
     this.game.addScore(this.worthPoints)
-    $(this.el).animate({top:"-=800"}, 1600, "easeInSine", function() {
+    this.game.demonKills += 1
+    $(this.el).animate({ top:"-=800" }, 1600, "easeInSine", function() {
       _this.remove()
     })
-    $(this.el).animate({opacity:0.6}, {duration: 200, queue: false} )
+    $(this.el).animate({ opacity:0.6 }, { duration: 200, queue: false } )
   }
   else {
 
@@ -106,25 +107,26 @@ Duck.prototype.die = function() {
     $(this.el).stop()
     // Notify the Game object and add 100 to the score
     this.game.addScore(this.worthPoints)
-    $(this.el).animate({top:"+=800"}, 1600, "easeInBackCustomised", function() {
+    $(this.el).animate({ top:"+=800" }, 1600, "easeInBackCustomised", function() {
       _this.remove()
     })
 
   }
 
-  function allDeadDucksDo() {
+  // function allDeadDucksDo() {
     
-  }
+  // }
 }
 
 // I made it to the other side!
 Duck.prototype.complete = function() {
   this.game.lives -= 1;
-  // return this;
+  return this;
 }
 
 // Code to remove the Duck from the DOM and from memory.
 Duck.prototype.remove = function() {
   $(this.el).remove();
   delete this;
+  game.nextRoundIfReady()
 }

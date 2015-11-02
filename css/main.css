@@ -51,7 +51,6 @@ form {
 .sprite {
   position: relative;
   z-index: 3;
-  left: 0px;
   top: 0px;
   display: block;
   background: url(../img/sprites.png) no-repeat;
