@@ -64,6 +64,7 @@ Duck.prototype.draw = function() {
   })
 
   if(this.type === 'ghost') {
+    $(this.el).addClass('demon')
     $(this.el).attr("style", "opacity: 0.6")
     $(this.el).animate({opacity:0},
     {
@@ -89,7 +90,8 @@ Duck.prototype.die = function() {
   if(this.type === 'ghost') {
 
     $(this.el).addClass("undead")
-    clearTimeout(this.flapTimer)
+    // $(this.el).removeClass('demon')
+    // clearTimeout(this.flapTimer)
     $(this.el).stop()
     this.game.addScore(this.worthPoints)
     this.game.demonKills += 1
