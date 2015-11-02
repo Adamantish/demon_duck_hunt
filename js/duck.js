@@ -4,15 +4,19 @@ function Duck(game, type) {
   this.game = game;
   this.el = $("#duck-template").clone();
   this.el.removeAttr("id");
-  
   this.type = type
+
+  this.dieSound = new Audio()
+  
 
   if(this.type === 'demon') {
     this.worthPoints = 300;
     this.demonImmunity = true;
+    this.dieSound.src = "audio/demon_die.mp3"
     }
   else {
     this.worthPoints = 100;
+    this.dieSound.src = "audio/quack.mp3"
   };
 
   // Add a callback for when the Duck is clicked (shot!)
@@ -86,6 +90,8 @@ Duck.prototype.draw = function() {
 Duck.prototype.die = function() {
 
   var _this = this
+
+  this.dieSound.play()
 
   if(this.type === 'demon') {
 

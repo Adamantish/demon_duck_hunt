@@ -30,6 +30,10 @@ function renderStartScreen() {
 
 $(document).ready(function() {
   console.log("Welcome to Duck Hunt!");
+  var tragicMusic = new Audio()
+  tragicMusic.src = 'audio/tragedy128.mp3'
+  tragicMusic.loop = true
+  tragicMusic.play()
 
   globModal = new MyModal("", renderStartScreen())
 
