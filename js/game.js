@@ -44,6 +44,7 @@ Game.prototype.decrementShots = function() {
   game.shotSound.play()
 
   game.shots -= 1
+    console.log("shots left: " + game.shots)
   };
 }
 // Fire off two new Ducks. After waiting a little while, continue to the next

@@ -8,12 +8,11 @@ function Duck(game, type) {
 
   this.dieSound = new Audio()
   
-
   if(this.type === 'demon') {
     this.worthPoints = 300;
     this.demonImmunity = true;
     this.dieSound.src = "audio/demon_die.mp3"
-    }
+  }
   else {
     this.worthPoints = 100;
     this.dieSound.src = "audio/quack.mp3"

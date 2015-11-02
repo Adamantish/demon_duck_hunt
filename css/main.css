@@ -56,6 +56,13 @@ form {
   background: url(../img/sprites_custom.png) no-repeat;
 }
 
+.shot {
+  background-position: -836px -208px;
+  width: 104px;
+  height: 74px;
+
+}
+
 .duck.right {
   background-position: -836px -208px;
   width: 104px;
@@ -85,6 +92,19 @@ form {
   height: 74px;*/
 }
 
+.sound-icon {
+  position: absolute;
+  left: 786px;
+  top: 30px;
+  border-radius: 100%;
+  background: url(../img/no_steps.png);
+  width: 100px;
+  height: 100px;
+}
+
+.sound-icon.unmute {
+  background: url(../img/yes_steps.png);
+}
 /*.duck-holder {
   width: 300%;
   height: 100%;
