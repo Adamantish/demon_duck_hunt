@@ -1573,9 +1573,6 @@ $.extend( baseEasings, {
 	Back: function( p ) {
 		return p * p * ( 3 * p - 2 );
 	},
-	BackCustomised: function( p ) {
-		return p * ( 5 * p - 1.7 );
-	},
 	Bounce: function( p ) {
 		var pow2,
 			bounce = 4;

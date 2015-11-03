@@ -1,5 +1,7 @@
 // use strict
 
+$.extend(jQuery.easing,{easeInBackSharp:function(p) { return p * ( 5 * p - 1.7 ); }})
+
 var globalTragedy
 var globModal
 
@@ -15,12 +17,12 @@ function renderStartScreen() {
   html += "<div class='sound-icon'></div>"
   html += "<h1 class='creepy'>Demon</h1>"
   html += "<h1>Duck Hunt!</h1>"
-  html += "<p>Your job is to kill them ducks dead. <br> To kill the demon one deader is purely for your pleasure and triple points. You can only kill it after it turns invisible.</p>"
+  html += "<p>Your job is to kill them ducks dead. <br> To kill the demon one deader is purely for your pleasure (and triple points). You can only kill it after it turns invisible.</p>"
   html += "<p>How tough do you like your duck?</p>"
   html += "<form id='difficulties' >"
-  html += "          <input type='radio' name='difficulty' value='easy'>Soft</input>"
-  html += "          <input type='radio' name='difficulty' value='medium' checked=true >Chewy</input>"
-  html += "          <input type='radio' name='difficulty' value='hard'>Rubber</input>"
+  html += "          <input type='radio' name='difficulty' value='easy'> Soft</input>"
+  html += "          <input type='radio' name='difficulty' value='medium' checked=true > Chewy</input>"
+  html += "          <input type='radio' name='difficulty' value='hard'> Rubber</input>"
   html += "  </form>"
 
   html += "<button id='play-button' class='modal-button'>Play</button>"

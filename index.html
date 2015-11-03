@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>jQuery - Duck Hunt</title>
-  <link href='https://fonts.googleapis.com/css?family=Creepster' rel='stylesheet' type='text/css'>
+  <title>Demon Duck Hunt</title>
+  <!-- <link href='https://fonts.googleapis.com/css?family=Creepster' rel='stylesheet' type='text/css'> -->
+  <link rel="stylesheet" type="text/css" href="css/fonts.css">
   <link href="css/reset.css" type="text/css" rel="stylesheet" />
   <link href="css/main.css" type="text/css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="css/modal.css">
@@ -35,10 +36,9 @@
     <!-- <div class="sprite duck right demon flap"></div> -->
     <div id="crosshair"></div>
 
-    <div id="shots">
-      <div id="shot sprite"></div>
-    </div>
-    <div id="score">0</div>
+    <div id="shells" class="hud-readout"></div>
+    <div id="lives" class="hud-readout">Lives: 10</div>
+    <div id="score" class='hud-readout'>0</div>
   </div>
 
 </body>

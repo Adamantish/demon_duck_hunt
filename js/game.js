@@ -22,6 +22,7 @@ function Game() {
     this.speed = this.difficulty[globDifficulty];
   }
   // Kick-off the first wave of Ducks
+  this.renderLives();
   this.nextRound();
 }
 
@@ -33,20 +34,28 @@ Game.prototype.difficulty = {
 }
 
 Game.prototype.resetShots = function() {
-  this.shots = 3
+  this.shots = 3;
+  $('#shells').html("")
+  for(var i = 1; i <= 3; i++) {
+    $('#shells').append('<div class="shell sprite" class="hud-readout"></div>')
+  };
 }
 
 Game.prototype.decrementShots = function() {
 
   if( game.shots > 0 ){
-  game.shotSound = new Audio()
-  game.shotSound.src = 'audio/shot.mp3'
-  game.shotSound.play()
+    game.shotSound = new Audio()
+    game.shotSound.src = 'audio/shot.mp3'
+    game.shotSound.play()
 
-  game.shots -= 1
-    console.log("shots left: " + game.shots)
+    game.shots -= 1
+    $('.shell').last().remove()
   };
 }
+
+Game.prototype.renderLives = function() {
+  $('#lives').html("Lives: " + this.lives)
+};
 // Fire off two new Ducks. After waiting a little while, continue to the next
 // round if we've got more lives, or show the Game Over screen.
 Game.prototype.nextRound = function() {
