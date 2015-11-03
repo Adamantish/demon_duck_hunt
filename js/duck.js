@@ -113,7 +113,7 @@ Duck.prototype.die = function() {
     $(this.el).stop()
     // Notify the Game object and add 100 to the score
     this.game.addScore(this.worthPoints)
-    $(this.el).animate({ top:"+=800" }, 1600, "easeInBackCustomised", function() {
+    $(this.el).animate({ top:"+=800" }, 1600, "easeInBackSharp", function() {
       _this.remove()
     })
 
@@ -127,6 +127,7 @@ Duck.prototype.die = function() {
 // I made it to the other side!
 Duck.prototype.complete = function() {
   this.game.lives -= 1;
+  this.game.renderLives()
   return this;
 }
 

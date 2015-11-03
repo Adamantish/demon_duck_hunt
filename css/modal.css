@@ -76,14 +76,6 @@ body {
   text-decoration: none;
 }
 
-/*
-.t300img-container {
-  height: 300px;
-  width: 300px;
-  margin: 1em auto 1em auto;
-  background-image: url("img/default_image.png");
-}*/
-
 
 .my-modal img {
   opacity: 0;
@@ -91,6 +83,6 @@ body {
 
 .my-modal p 
 {
-  overflow-y:scroll;
+  /*overflow-y:scroll;*/
 }
 

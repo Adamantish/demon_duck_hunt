@@ -4,8 +4,8 @@ function Game() {
   this.lives = 10;
   this.score = 0;
   this.demonKills = 0;
-  // this.shotSound = new Audio()
-  // this.shotSound.src = 'audio/shot.mp3'
+  this.shotSound = new Audio()
+  this.shotSound.src = 'audio/shot.mp3'
 
   $('#score')[0].innerText = 0
 
@@ -22,6 +22,7 @@ function Game() {
     this.speed = this.difficulty[globDifficulty];
   }
   // Kick-off the first wave of Ducks
+  this.renderLives();
   this.nextRound();
 }
 
@@ -33,20 +34,28 @@ Game.prototype.difficulty = {
 }
 
 Game.prototype.resetShots = function() {
-  this.shots = 3
+  this.shots = 3;
+  $('#shells').html("")
+  for(var i = 1; i <= 3; i++) {
+    $('#shells').append('<div class="shell sprite" class="hud-readout"></div>')
+  };
 }
 
 Game.prototype.decrementShots = function() {
 
   if( game.shots > 0 ){
-  game.shotSound = new Audio()
-  game.shotSound.src = 'audio/shot.mp3'
-  game.shotSound.play()
+    game.shotSound = new Audio()
+    game.shotSound.src = 'audio/shot.mp3'
+    game.shotSound.play()
 
-  game.shots -= 1
-    console.log("shots left: " + game.shots)
+    game.shots -= 1
+    $('.shell').last().remove()
   };
 }
+
+Game.prototype.renderLives = function() {
+  $('#lives').html("Lives: " + this.lives)
+};
 // Fire off two new Ducks. After waiting a little while, continue to the next
 // round if we've got more lives, or show the Game Over screen.
 Game.prototype.nextRound = function() {
@@ -64,16 +73,16 @@ Game.prototype.nextRound = function() {
     _this.gameOver();
   }
   else {
-    // roundTimer = setTimeout(function() {
-      duck = new Duck(_this);
-      duck2 = new Duck(_this);
-      demonDuck = new Duck(_this, 'demon');
+    roundTimer = setTimeout(function() {
+      var duck = new Duck(_this);
+      var duck2 = new Duck(_this);
+      var demonDuck = new Duck(_this, 'demon');
       
       _this.resetShots();
 
-    //   }
-    //   , (5000 * Math.random())
-    // )
+      }
+    , (5000 * Math.random())
+    )
 
   };
 };
@@ -81,7 +90,6 @@ Game.prototype.nextRound = function() {
 Game.prototype.nextRoundIfReady = function() {
   var _this = this
   if ($('.duck').length == 1) {
-
     _this.nextRound()
   };
 };
@@ -96,5 +104,5 @@ Game.prototype.gameOver = function() {
 // Add the given number of points to the score, and print the total to the log.
 Game.prototype.addScore = function(points) {
   this.score += points;
-  $('#score').html = this.score
+  $('#score')[0].innerText = this.score
 }
