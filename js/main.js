@@ -4,10 +4,25 @@ $.extend(jQuery.easing,{easeInBackSharp:function(p) { return p * ( 5 * p - 1.7 )
 
 var globalTragedy
 var globModal
+var globDifficulty
 
 $(document).ready(function() {
   console.log("Welcome to Duck Hunt!");
 
+  if(globalTragedy === undefined) {
+      globalTragedy = new Audio('audio/tragedy128.mp3')
+      globalTragedy.loop = true
+      globalTragedy.currentTime=(69)
+  }
+
+  var $all = $('html')
+  $all.on('click', '#play-button', function() { 
+    globDifficulty = $('input[name=difficulty]:checked', '#difficulties').val()
+    globModal.remove()
+    game = new Game()
+  })
+
+  
   globModal = new MyModal("", renderStartScreen())
   initCallbacks()
 });
@@ -17,7 +32,7 @@ function renderStartScreen() {
   html += "<div class='sound-icon'></div>"
   html += "<h1 class='creepy'>Demon</h1>"
   html += "<h1>Duck Hunt!</h1>"
-  html += "<p>Your job is to kill them ducks dead. <br> To kill the demon one deader is purely for your pleasure (and triple points). You can only kill it after it turns invisible.</p>"
+  html += "<p>Your job is to kill them ducks dead. <br> To kill the demon one deader is purely for your pleasure (and triple points). You can only kill it after it turns invisible. Just don't kill Henry!</p>"
   html += "<p>How tough do you like your duck?</p>"
   html += "<form id='difficulties' >"
   html += "          <input type='radio' name='difficulty' value='easy'> Soft</input>"
@@ -27,16 +42,6 @@ function renderStartScreen() {
 
   html += "<button id='play-button' class='modal-button'>Play</button>"
 
- 
-
-  var $playButton = $('html')
-  $playButton.on('click', '#play-button', function() { 
-   
-    globDifficulty = $('input[name=difficulty]:checked', '#difficulties').val()
-    globModal.remove()
-    game = new Game()
-
-  })
 
   return html
 }
@@ -46,11 +51,7 @@ function initCallbacks() {
 
   $('html').on('click', '.sound-icon', function() {
     $('.sound-icon').toggleClass('unmute')
-    if(globalTragedy === undefined) {
-      globalTragedy = new Audio('audio/tragedy128.mp3')
-      globalTragedy.loop = true
-      globalTragedy.currentTime=(1)
-    }
+
     if(globalTragedy.paused){
       globalTragedy.play()
     }
@@ -58,7 +59,9 @@ function initCallbacks() {
       globalTragedy.pause()
     };
   })
-  // Behaviour for the play again link
+
+  $('html').on('click', '.sound-icon', function() {
+  })
   $('#play-again').click(function(e) {
     $("#game-over").toggle();
     delete game;

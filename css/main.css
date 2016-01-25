@@ -53,7 +53,7 @@ form {
   z-index: 3;
   top: 0px;
   display: block;
-  background: url(../img/sprites_custom.png) no-repeat;
+  background: url(../img/sprites_custom_henry.png) no-repeat;
 }
 
 #shells {
@@ -89,8 +89,8 @@ form {
   left: 100px;
   top: 100px;
   background-position: -836px -428px;
-/*    width: 104px;
-  height: 74px;*/
+    width: 104px;
+  height: 74px;
 }
 
 .duck.right.demon.flap {
@@ -99,6 +99,21 @@ form {
   background-position: -695px -428px;
 /*    width: 104px;
   height: 74px;*/
+}
+
+.duck.right.henry {
+  /*position: absolute;*/
+  width: 135px;
+  height: 100px;
+  left: 30px;
+  top: 20px;
+  background-position: 0 -676px;
+  border-radius: 18%;
+}
+
+.duck.right.henry.flap {
+  background-position: -135px -676px;
+  width: 140px;
 }
 
 .sound-icon {
@@ -120,9 +135,14 @@ form {
   height: 100%;
 }*/
 
-.dead {
+.duck.plain.dead {
   transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
+}
+
+.duck.henry.dead {
+  background-position: -275px -676px;
+  width: 140px;
 }
 
 .undead {

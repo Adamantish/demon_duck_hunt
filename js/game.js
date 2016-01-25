@@ -14,22 +14,20 @@ function Game() {
   $('#game').mousedown(function(){ return false; })
 
   $('#game').on('click', _this.decrementShots)
-  // Set the difficulty- easy by default
   if(typeof(globDifficulty) === "undefined") {
     this.speed = this.difficulty.easy;
   }
   else {
     this.speed = this.difficulty[globDifficulty];
   }
-  // Kick-off the first wave of Ducks
+
   this.renderLives();
   this.nextRound();
 }
 
-// Maps difficulty to speed at which a Duck traverses the screen in milliseconds.
 Game.prototype.difficulty = {
   easy: 8000 ,
-  medium: 4000 ,
+  medium: 4800 ,
   hard: 2500 
 }
 
@@ -60,24 +58,26 @@ Game.prototype.renderLives = function() {
 // round if we've got more lives, or show the Game Over screen.
 Game.prototype.nextRound = function() {
 
-  // myTODO: Restructure to call this on the removal of last duck rather than using setTimeout to call self.
-  // This will mean we don't have to wait a long time after killing both ducks early
-   // and don't have to wait for game over
   var _this = this;
   var roundTimer; 
-  // Do this again in a little while...
   
   // End the game if we've run out of lives
   if(_this.lives <= 0) {
-    // Game over man
+
     _this.gameOver();
   }
   else {
     roundTimer = setTimeout(function() {
       var duck = new Duck(_this);
       var duck2 = new Duck(_this);
-      var demonDuck = new Duck(_this, 'demon');
       
+      if(Math.random() <= 0.25) {
+        var henry = new Duck(_this, 'henry');  
+      }
+
+      if(Math.random() <= 0.4) {
+        var henry = new Duck(_this, 'demon');  
+      }
       _this.resetShots();
 
       }
